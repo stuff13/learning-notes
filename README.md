@@ -2,11 +2,11 @@
 
 Taking notes on books I read, talks I watch, articles I study, and papers I love – recalling them right afterward by creating short summaries – helps a lot in my learning process. Here you'll find some of those little pieces.
 
-If you are looking for an easy way to consume these notes, please check out [keyvanakbary.github.io/learning-notes/](https://keyvanakbary.github.io/learning-notes/).
+If you are looking for an easy way to consume these notes, please check out [stuff13.github.io/learning-notes/](https://stuff13.github.io/learning-notes/).
 
 ### Books
 
-* [99 Bottles of OOP](books/99-bottles-of-oop.md) by **Sandi Metz** and **Katrina Owen**, 2016.
+* [Docker Workshop](books/docker-workshop.md) be **Vincent Sezto et al., 2020.
 * [An Elegant Puzzle: Systems of Engineering Management](books/an-elegant-puzzle.md) by **Will Larson**, 2019.
 * [A Guide to the Good Life: The Ancient Art of Stoic Joy](books/a-guide-to-the-good-life.md) by **William B. Irvine**, 2008.
 * [Designing Data-Intensive Applications](books/designing-data-intensive-applications.md) by **Martin Kleppmann**, 2015.
