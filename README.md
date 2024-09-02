@@ -3,7 +3,7 @@
 Taking notes on some of the books I have read or other media that I have consumed.
 
 If you are looking for an easy way to consume these notes, please check out [stuff13.github.io/learning-notes/](https://stuff13.github.io/learning-notes/).
-This project's code was ruthlessly stolen from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)^1
+This project's code was ruthlessly stolen from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)[^1]
 
 
 ### Books
@@ -35,9 +35,4 @@ If you have any suggestions for improvement please feel free to open a pull requ
 
 Thanks!
 
-[^1] Should you decide to fork keyvanakbary's repo to make your own learning notes,
-you will need to ensure two things:
-1. You install Docker Compose in your build script as I have done
-2. When you fork your repo, only copy the master branch. If your fork ends up including 
-the gh-pages branch, as mine did, you will need to delete the gh-pages branch from the remote server
-and then push some changes to get the deploy action to complete.
+[^1]: Should you decide to fork keyvanakbary's repo to make your own learning notes, you will need to ensure: 1. You install Docker Compose in your build script as I have done; 2. When you fork the repo, only copy the master branch. 
