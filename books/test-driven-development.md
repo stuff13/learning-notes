@@ -1,4 +1,5 @@
 # [Test-Driven Development: By Example](https://www.goodreads.com/book/show/387190.Test_Driven_Development)
+[I have indeed read this book, but these notes below are from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)]
 
 - [TDD videos](#tdd-videos)
 - [Preface](#preface)

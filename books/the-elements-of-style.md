@@ -1,4 +1,5 @@
 # [The Elements of Style](https://www.goodreads.com/book/show/33514.The_Elements_of_Style)
+[I have indeed read this book, but these notes below are from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)]
 
 - [Elementary rules of usage](#elementary-rules-of-usage)
 - [Elementary principles of composition](#elementary-principles-of-composition)

@@ -1,4 +1,5 @@
 # [The Lean Startup](https://www.goodreads.com/book/show/10127019-the-lean-startup)
+[I have indeed read this book, but these notes below are from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)]
 
 - [Introduction](#introduction)
 - [Lean Startup method](#lean-startup-method)

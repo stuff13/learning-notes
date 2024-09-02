@@ -1,4 +1,5 @@
 # Escaping the Build Trap
+[I have indeed read this book, but these notes below are from [keyvanakbary](https://github.com/keyvanakbary/learning-notes)]
 
 - [The value exchange system](#the-value-exchange-system)
 - [Constraints on the value exchange system](#constraints-on-the-value-exchange-system)
