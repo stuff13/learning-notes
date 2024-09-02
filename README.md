@@ -8,7 +8,7 @@ This project's code was ruthlessly stolen from [keyvanakbary](https://github.com
 
 ### Books
 
-* [Docker Workshop](books/docker-workshop.md) be **Vincent Sezto et al., 2020.
+* [Docker Workshop](books/docker-workshop.md) by **Vincent Sezto** et al., 2020.
 * [Escaping the Build Trap](books/escaping-the-build-trap.md) by **Melissa Perri**, 2019.
 * [Screw It, Let's Do It: Lessons In Life](books/screw-it-lets-do-it.md) by **Richard Branson**, 2006.
 * [Test Driven Development: By Example](books/test-driven-development.md) by **Kent Beck**, 2002.
