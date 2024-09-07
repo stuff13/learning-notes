@@ -73,10 +73,12 @@ To view the images stored locally
 ## Chapter Two
 ## Getting Started With Dockerfiles
 
-A Dockerfile is a text file that contains instructions (*directives*) on how to create a Docker image
-	`# This is a comment
-	DIRECTIVE argument`
-*directives* are case in-sensitive, but by convention, we distinguish them from arguments by writing them in all-caps
+A *Dockerfile* is a text file that contains instructions (*directives*) on how to create a Docker image.
+	```
+	# This is a comment
+	DIRECTIVE argument
+	```
+*Directives* are case in-sensitive, but by convention, we distinguish them from arguments by writing them in all-caps
 
 ### Common Directives
 
