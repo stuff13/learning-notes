@@ -83,35 +83,35 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 ### Common Directives
 
 #### FROM
-	- `FROM <image>:tag>`
-	- specifies the parent image for the build
+`FROM <image>:<tag>`
+- specifies the parent image for the build
 #### LABEL
-	- `LABEL <key>=<value>`
-	`LABEL version=1.0
-	- can include multiple labels on a single line by separating them with spaces
+- `LABEL <key>=<value>`
+`LABEL version=1.0
+- can include multiple labels on a single line by separating them with spaces
 #### RUN
-	- `RUN <command>`
-	- executes commands during image build time
-		i. creates a new layer on tome of the existing layer
-		ii. executes the specified command
-		iii. commits the results to the newly created layer 
-	`RUN apt-get update`
-	- best if we chain commands in a single line:
-	`RUN apt-get update && apt-get install nginx -y`
+- `RUN <command>`
+- executes commands during image build time
+	i. creates a new layer on tome of the existing layer
+	ii. executes the specified command
+	iii. commits the results to the newly created layer 
+`RUN apt-get update`
+- best if we chain commands in a single line:
+`RUN apt-get update && apt-get install nginx -y`
 #### CMD
-	- used to provide the default initialization commandexecuted when a container is created
-	- a dockerfile can execute only one CMD directive
-	- with multiple, only the LAST one is executed
-	- `CMD ["executable", "params1", "params2", "params3",...]`
-	- `CMD ["echo", "Hello World"]`
-	- command arguments passed with the docker run command will take precedence over this directive
-	- command is run after the image is launched
+- used to provide the default initialization commandexecuted when a container is created
+- a dockerfile can execute only one CMD directive
+- with multiple, only the LAST one is executed
+- `CMD ["executable", "params1", "params2", "params3",...]`
+- `CMD ["echo", "Hello World"]`
+- command arguments passed with the docker run command will take precedence over this directive
+- command is run after the image is launched
 #### ENTRYPOINT
-	- also used to provide initialisation
-	- can only be overriden by using the --entrypoint flag with the docker container run command
-	- `ENTRYPOINT ["executable", "params1", "params2", "params3",...]`
-	- when used with CMD, CMD holds arguments for ENTRYPOINT
-	- with no ENTRYPOINT set, the default ENTRYPOINT is run: `/bin/sh -c`, allowing the first CMD parameters to be run as a command
+- also used to provide initialisation
+- can only be overriden by using the --entrypoint flag with the docker container run command
+- `ENTRYPOINT ["executable", "params1", "params2", "params3",...]`
+- when used with CMD, CMD holds arguments for ENTRYPOINT
+- with no ENTRYPOINT set, the default ENTRYPOINT is run: `/bin/sh -c`, allowing the first CMD parameters to be run as a command
 
 ### Building Docker Images
 
@@ -128,71 +128,71 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 ### Other Dockerfile Directives
 
 #### ENV
-	- sets environment variables
-	- `ENV <key>:<value>`
-	`ENV PATH $PATH:/usr/local/bin/`
-	- multiple environment variables can be set with one line by separating them with spaces
-	- once set, available in further layers and containers launched from this image
+- sets environment variables
+- `ENV <key>:<value>`
+`ENV PATH $PATH:/usr/local/bin/`
+- multiple environment variables can be set with one line by separating them with spaces
+- once set, available in further layers and containers launched from this image
 #### ARG
-	- `ARG <varname>`
-	`ARG VERSION`
-	- used to define variables the user can pass at build time
-	- only directive that can precede the FROM directive
-	- can have a default value set
-	`ARG VERSION=1.0.0`
-	- can be set from the build command: `docker image build --build-arg <varname>=<value>`
+- `ARG <varname>`
+`ARG VERSION`
+- used to define variables the user can pass at build time
+- only directive that can precede the FROM directive
+- can have a default value set
+`ARG VERSION=1.0.0`
+- can be set from the build command: `docker image build --build-arg <varname>=<value>`
 #### WORKDIR
-	- used to specify the working directory of the docker container
-	- `WORKDIR <path to container>`
-	- if the directory does not exist, mkdir will create the directory
+- used to specify the working directory of the docker container
+- `WORKDIR <path to container>`
+- if the directory does not exist, mkdir will create the directory
 #### COPY
-	- copies files from the local file system to the docker container
-	- `COPY <source> <destination>`
-	`COPY *.html /usr/www/html/`
-	- **--chown** can be used to specify ownership
-	> `COPY --chown=myuser:mygroup *.html /usr/www.html/`
+- copies files from the local file system to the docker container
+- `COPY <source> <destination>`
+`COPY *.html /usr/www/html/`
+- **--chown** can be used to specify ownership
+> `COPY --chown=myuser:mygroup *.html /usr/www.html/`
 #### ADD
-	- similar to COPY, but allows us to use a URL as a source
-	- `ADD <source> <destingation>`
-	`ADD http://sample.com/test.txt /tmp/test.txt`
-	- compressed files added are automatically uncompressed
+- similar to COPY, but allows us to use a URL as a source
+- `ADD <source> <destingation>`
+`ADD http://sample.com/test.txt /tmp/test.txt`
+- compressed files added are automatically uncompressed
 #### USER
-	- Docker uses the root user as the default user of a Docker container
-	- The Dockerfile can use USER to specify which user should be used
-	- `USER <user> [<group>]`
-	- these need to be valid users and groups
-	`USER www-data`
-	- The default user for Apache web server is www-data
+- Docker uses the root user as the default user of a Docker container
+- The Dockerfile can use USER to specify which user should be used
+- `USER <user> [<group>]`
+- these need to be valid users and groups
+`USER www-data`
+- The default user for Apache web server is www-data
 #### VOLUME
-	- In Docker, the data generated and used by Docker containers will be stored within the container filesystem
-	- If we delete the container, the data is lost
-	- We can use the VOLUME directive to specify a volume outside the container to separate the data from the container and even share data between containers
-	- `VOLUME ["<path>"]`
-	- a sequence of paths sparated by spaces can be used to create multiple volumes
-	- To inspect volume information: `docker container inspect <container>`
-	- to display detailed information about the volume: `docker volume inspect <volume>`
+- In Docker, the data generated and used by Docker containers will be stored within the container filesystem
+- If we delete the container, the data is lost
+- We can use the VOLUME directive to specify a volume outside the container to separate the data from the container and even share data between containers
+- `VOLUME ["<path>"]`
+- a sequence of paths sparated by spaces can be used to create multiple volumes
+- To inspect volume information: `docker container inspect <container>`
+- to display detailed information about the volume: `docker volume inspect <volume>`
 #### EXPOSE
-	- used to inform Docker that the container is listening on the specified ports at runtime
-	- `EXPOSE <port>`
-	- these ports are only available from within other Docker containers
-	- to expose ports outside the docker container, we publish the ports with the -p flag
-	`docker container run -p <host_port>: <container_port> <image>`
-	- when using the -p command, we ALSO have to use the EXPOSE directive
-	- the path is specified for within the container and Docker sets it somewhere on the host system
-#### HEALTHCHECK
-	- `HEALTHCHECK [OPTIONS] CMD <command>`
-	- only the last HEALTHCHECK option in a Dockerfile will take effect
-	`HEALTHCHECK CMD curl -f http://localhost/ || exit 1`
-	- the exit value at the end dictates the health: 0 == healthy, 1 == unhealthy
-	- **--interval**: specifies the period between each health check (default 30s)
-	- **--timeout**: if no success response isreceived within this period, check fails (default 30s)
-	- **--start-period**: how long to wait before running the first health check (0s)
-	- **--retries**: HEALTHCHECK will retry this many times, and only fail after all of them (3 tries)
+- used to inform Docker that the container is listening on the specified ports at runtime
+- `EXPOSE <port>`
+- these ports are only available from within other Docker containers
+- to expose ports outside the docker container, we publish the ports with the -p flag
+`docker container run -p <host_port>: <container_port> <image>`
+- when using the -p command, we ALSO have to use the EXPOSE directive
+- the path is specified for within the container and Docker sets it somewhere on the host system
+# HEALTHCHECK
+- `HEALTHCHECK [OPTIONS] CMD <command>`
+- only the last HEALTHCHECK option in a Dockerfile will take effect
+`HEALTHCHECK CMD curl -f http://localhost/ || exit 1`
+- the exit value at the end dictates the health: 0 == healthy, 1 == unhealthy
+- **--interval**: specifies the period between each health check (default 30s)
+- **--timeout**: if no success response isreceived within this period, check fails (default 30s)
+- **--start-period**: how long to wait before running the first health check (0s)
+- **--retries**: HEALTHCHECK will retry this many times, and only fail after all of them (3 tries)
 #### ONBUILD
-	- creates a reusable docker image to be used for another docker image
-	- `ONBUILD <instruction>`
-	`ONBUILD ENTRYPOINT ["echo", "Running ONBUILD directive"]`
-	- does not run when built, only runs when this image is used for a child image
+- creates a reusable docker image to be used for another docker image
+- `ONBUILD <instruction>`
+`ONBUILD ENTRYPOINT ["echo", "Running ONBUILD directive"]`
+- does not run when built, only runs when this image is used for a child image
 
 #### Sample PHP Dockerfile:
 ```
