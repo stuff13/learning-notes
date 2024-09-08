@@ -20,17 +20,17 @@ I am currently reading this book. These notes are therefore incomplete
 
 ## Chapter One
 
-To see running containers
-`docker ps`
+- To see running containers
+	- `docker ps`
 - to display all the containers, even stopped ones
-`docker ps -a`
-To view the images stored locally
-`docker images`
+	- `docker ps -a`
+- To view the images stored locally
+	- `docker images`
 
 ### Managing Docker Containers
 #### docker pull
 - downloads a container image to the local cache
-`docker pull <name>`
+- `docker pull <name>`
 #### docker stop
 #### docker start
 #### docker restart
@@ -40,16 +40,16 @@ To view the images stored locally
 - If you want to quit the shell, use ctrl-p then ctrl-q to exit without closing the container.
 #### docker exec
 - executes a command inside a running container
-`docker exec <command>`
-`docker exec -it <name> /bin/bash`
-- uses your current command prompt as a bash shell for your docker container
+- `docker exec <command>`
+- `docker exec -it <name> /bin/bash`
+	- uses your current command prompt as a bash shell for your docker container
 - `exit` returns to the normal shell
 #### docker rm
 - deletes a stopped container
 #### docker rmi
 - deletes a container image
-`docker rmi -f $(docker images -a -q)`
-- to delete all containers
+- to delete all containers: 
+> `docker rmi -f $(docker images -a -q)`
 #### docker inspect
 - shows verbose details about the state of a container
 #### docker run
@@ -59,16 +59,16 @@ To view the images stored locally
 - `-t` allows bash to run in interactive mode 
 - `--name` gives the container a human-readable name
 #### docker system prune
-`docker system prune -fa`
 - removes any container images not tied to an existing running container
+> `docker system prune -fa`
 
 ### PostGres CLI commands
-- Logging In
-`psql --username <username> --password`
-- Listing the database
-`\l`
-- Quitting the PSQL shell
-`\q`
+Logging In
+- `psql --username <username> --password`
+Listing the database
+- `\l`
+Quitting the PSQL shell
+- `\q`
 
 ## Chapter Two
 ## Getting Started With Dockerfiles
@@ -83,27 +83,27 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 ### Common Directives
 
 #### FROM
-`FROM <image>:<tag>`
 - specifies the parent image for the build
+- `FROM <image>:<tag>`
 #### LABEL
-- `LABEL <key>=<value>`
-`LABEL version=1.0
 - can include multiple labels on a single line by separating them with spaces
+- `LABEL <key>=<value>`
+> `LABEL version=1.0
 #### RUN
-- `RUN <command>`
 - executes commands during image build time
 	i. creates a new layer on tome of the existing layer
 	ii. executes the specified command
 	iii. commits the results to the newly created layer 
-`RUN apt-get update`
+- `RUN <command>`
+> `RUN apt-get update`
 - best if we chain commands in a single line:
-`RUN apt-get update && apt-get install nginx -y`
+> `RUN apt-get update && apt-get install nginx -y`
 #### CMD
 - used to provide the default initialization commandexecuted when a container is created
 - a dockerfile can execute only one CMD directive
 - with multiple, only the LAST one is executed
 - `CMD ["executable", "params1", "params2", "params3",...]`
-- `CMD ["echo", "Hello World"]`
+> `CMD ["echo", "Hello World"]`
 - command arguments passed with the docker run command will take precedence over this directive
 - command is run after the image is launched
 #### ENTRYPOINT
@@ -116,30 +116,30 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 ### Building Docker Images
 
 - `docker image build <context>`
-`docker image build .`
+> `docker image build .`
 - `.` means that the Dockerfile should be found in the current directory
 - `-t`: add a tag to the image
-`docker image build -t my-tagged-image:v2.0`
+> `docker image build -t my-tagged-image:v2.0`
 - my-tagged-image == repository name
 - v2.0 == tag name
-`docker image list`
-- list the available Docker images
+List the available Docker images
+> `docker image list`
 
 ### Other Dockerfile Directives
 
 #### ENV
 - sets environment variables
 - `ENV <key>:<value>`
-`ENV PATH $PATH:/usr/local/bin/`
+> `ENV PATH $PATH:/usr/local/bin/`
 - multiple environment variables can be set with one line by separating them with spaces
 - once set, available in further layers and containers launched from this image
 #### ARG
 - `ARG <varname>`
-`ARG VERSION`
+> `ARG VERSION`
 - used to define variables the user can pass at build time
 - only directive that can precede the FROM directive
 - can have a default value set
-`ARG VERSION=1.0.0`
+> `ARG VERSION=1.0.0`
 - can be set from the build command: `docker image build --build-arg <varname>=<value>`
 #### WORKDIR
 - used to specify the working directory of the docker container
@@ -148,20 +148,20 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 #### COPY
 - copies files from the local file system to the docker container
 - `COPY <source> <destination>`
-`COPY *.html /usr/www/html/`
+> `COPY *.html /usr/www/html/`
 - **--chown** can be used to specify ownership
 > `COPY --chown=myuser:mygroup *.html /usr/www.html/`
 #### ADD
 - similar to COPY, but allows us to use a URL as a source
 - `ADD <source> <destingation>`
-`ADD http://sample.com/test.txt /tmp/test.txt`
+> `ADD http://sample.com/test.txt /tmp/test.txt`
 - compressed files added are automatically uncompressed
 #### USER
 - Docker uses the root user as the default user of a Docker container
 - The Dockerfile can use USER to specify which user should be used
 - `USER <user> [<group>]`
 - these need to be valid users and groups
-`USER www-data`
+> `USER www-data`
 - The default user for Apache web server is www-data
 #### VOLUME
 - In Docker, the data generated and used by Docker containers will be stored within the container filesystem
@@ -176,14 +176,15 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 - `EXPOSE <port>`
 - these ports are only available from within other Docker containers
 - to expose ports outside the docker container, we publish the ports with the -p flag
-`docker container run -p <host_port>: <container_port> <image>`
-- when using the -p command, we ALSO have to use the EXPOSE directive
+	- `docker container run -p <host_port>: <container_port> <image>`
+	- when using the -p command, we still have to use the EXPOSE directive
 - the path is specified for within the container and Docker sets it somewhere on the host system
 # HEALTHCHECK
 - `HEALTHCHECK [OPTIONS] CMD <command>`
 - only the last HEALTHCHECK option in a Dockerfile will take effect
-`HEALTHCHECK CMD curl -f http://localhost/ || exit 1`
-- the exit value at the end dictates the health: 0 == healthy, 1 == unhealthy
+- Example: this would check to see if a web server was operational in the container
+	- the exit value at the end dictates the health: 0 == healthy, 1 == unhealthy
+> `HEALTHCHECK CMD curl -f http://localhost/ || exit 1`
 - **--interval**: specifies the period between each health check (default 30s)
 - **--timeout**: if no success response isreceived within this period, check fails (default 30s)
 - **--start-period**: how long to wait before running the first health check (0s)
@@ -191,8 +192,8 @@ A *Dockerfile* is a text file that contains instructions (*directives*) on how t
 #### ONBUILD
 - creates a reusable docker image to be used for another docker image
 - `ONBUILD <instruction>`
-`ONBUILD ENTRYPOINT ["echo", "Running ONBUILD directive"]`
 - does not run when built, only runs when this image is used for a child image
+> `ONBUILD ENTRYPOINT ["echo", "Running ONBUILD directive"]`
 
 #### Sample PHP Dockerfile:
 ```
